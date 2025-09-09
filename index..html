@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Websy - We craft your online presence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8rem 2rem 4rem;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            width: 100%;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero .slogan {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            background: white;
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.08;
+            animation: float 8s ease-in-out infinite;
+            font-size: 2rem;
+            color: white;
+            z-index: 1;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+            font-size: 1.5rem;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 25%;
+            right: 10%;
+            animation-delay: 2s;
+            font-size: 2.5rem;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 4s;
+            font-size: 1.8rem;
+        }
+
+        .floating-element:nth-child(4) {
+            top: 60%;
+            right: 20%;
+            animation-delay: 1s;
+            font-size: 2rem;
+        }
+
+        .floating-element:nth-child(5) {
+            bottom: 20%;
+            right: 8%;
+            animation-delay: 3s;
+            font-size: 1.6rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-white {
+            background: white;
+            margin: 3rem auto;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.08);
+            max-width: 1200px;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            padding: 0 1rem;
+        }
+
+        .service-card {
+            background: #fafbff;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #718096;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Credentials Section */
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            padding: 0 1rem;
+        }
+
+        .credential-card {
+            background: #fafbff;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.08);
+            transition: all 0.4s ease;
+            text-align: center;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .credential-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .credential-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .credential-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.15);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .credential-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .credential-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .credential-card p {
+            color: #718096;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Process Timeline */
+        .process-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+            position: relative;
+            background: #fafbff;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.12);
+        }
+
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .process-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -2rem;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            opacity: 0.4;
+        }
+
+        .step-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 0.5rem;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: #718096;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+            margin: 3rem auto;
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.08);
+            max-width: 1200px;
+            overflow: hidden;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .contact h2 {
+            color: #2d3748;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .contact h2::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+            animation: growLine 1s ease forwards;
+        }
+
+        .contact form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeInUp 0.9s ease;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            background: #fafbff;
+        }
+
+        .contact input:focus,
+        .contact textarea:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+            background: white;
+        }
+
+        .contact textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact .btn {
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #25D366;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact .btn:hover::before {
+            left: 100%;
+        }
+
+        .contact .btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .contact .btn:active {
+            transform: translateY(0);
+        }
+
+        .error {
+            font-size: 0.9rem;
+            color: #e53e3e;
+            text-align: left;
+            margin-top: -10px;
+            display: none;
+            padding: 5px 10px;
+            background: #fed7d7;
+            border-radius: 6px;
+            border-left: 3px solid #e53e3e;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0; 
+                transform: translateY(-20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes growLine {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            section {
+                padding: 5rem 2rem;
+                max-width: 1000px;
+            }
+            
+            .services-grid,
+            .credentials-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero {
+                padding: 6rem 1rem 3rem;
+                min-height: 90vh;
+            }
+
+            .hero-content {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .section-white, .contact {
+                margin: 2rem auto;
+                border-radius: 20px;
+            }
+
+            .services-grid,
+            .credentials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0;
+            }
+
+            .service-card,
+            .credential-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .process-step {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .process-step:not(:last-child)::after {
+                left: 50%;
+                bottom: -1.5rem;
+                height: 1.5rem;
+            }
+
+            .floating-element {
+                display: none;
+            }
+
+            .contact form {
+                width: 90%;
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 5rem 0.5rem 2rem;
+            }
+
+            section {
+                padding: 3rem 0.5rem;
+            }
+
+            .service-card,
+            .credential-card,
+            .process-step {
+                padding: 1.5rem 1rem;
+            }
+
+            .contact {
+                padding: 4rem 1rem;
+            }
+
+            .contact input,
+            .contact textarea {
+                font-size: 0.9rem;
+                padding: 12px 16px;
+            }
+
+            .contact .btn {
+                font-size: 0.95rem;
+                padding: 14px 20px;
+            }
+        }
+
+        /* Large Desktop Optimization */
+        @media (min-width: 1400px) {
+            .hero-content {
+                max-width: 1200px;
+            }
+
+            section {
+                max-width: 1600px;
+            }
+
+            .section-white, .contact {
+                max-width: 1400px;
+            }
+
+            .services-grid,
+            .credentials-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
+            }
+
+            .process-timeline {
+                max-width: 1000px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Websy</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#credentials">Why Us</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-element">◆</div>
+        <div class="floating-element">●</div>
+        <div class="floating-element">▲</div>
+        <div class="floating-element">◇</div>
+        <div class="floating-element">○</div>
+        
+        <div class="hero-content">
+            <h1>Websy</h1>
+            <p class="slogan">We craft your online presence.</p>
+            <a href="#contact" class="cta-button">Start Your Project</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-white fade-in">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Web Design</h3>
+                <p>Creating stunning, user-friendly designs that captivate your audience and reflect your brand identity.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Development</h3>
+                <p>Building fast, responsive, and scalable websites using the latest technologies and best practices.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Mobile Optimization</h3>
+                <p>Ensuring your website looks and works perfectly on all devices and screen sizes.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Performance</h3>
+                <p>Optimizing your website for lightning-fast loading speeds and superior user experience.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>SEO Ready</h3>
+                <p>Building SEO-optimized websites that help you rank higher in search engine results.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛡️</div>
+                <h3>Maintenance</h3>
+                <p>Providing ongoing support and maintenance to keep your website secure and up-to-date.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Credentials Section -->
+    <section id="credentials" class="section-white fade-in">
+        <h2>Why Choose Websy</h2>
+        <div class="credentials-grid">
+            <div class="credential-card">
+                <div class="credential-icon">🎓</div>
+                <h3>Certified Experts</h3>
+                <p>Our team holds industry certifications in modern web technologies, ensuring your project is built with the latest standards and best practices.</p>
+            </div>
+            <div class="credential-card">
+                <div class="credential-icon">⚡</div>
+                <h3>Lightning Fast Delivery</h3>
+                <p>We pride ourselves on delivering projects on time without compromising quality. Your website will be live faster than you expect.</p>
+            </div>
+            <div class="credential-card">
+                <div class="credential-icon">🔒</div>
+                <h3>Secure & Reliable</h3>
+                <p>Every website we build includes SSL certificates, security best practices, and reliable hosting recommendations for peace of mind.</p>
+            </div>
+            <div class="credential-card">
+                <div class="credential-icon">💡</div>
+                <h3>Future-Proof Solutions</h3>
+                <p>We use cutting-edge technologies and scalable architectures to ensure your website grows with your business needs.</p>
+            </div>
+            <div class="credential-card">
+                <div class="credential-icon">🛠️</div>
+                <h3>Ongoing Support</h3>
+                <p>Your success is our priority. We provide comprehensive support, updates, and maintenance to keep your site running perfectly.</p>
+            </div>
+            <div class="credential-card">
+                <div class="credential-icon">📈</div>
+                <h3>Results Driven</h3>
+                <p>Every design decision is backed by data and user experience research to maximize your website's performance and conversions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="section-white fade-in">
+        <h2>Our Process</h2>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h3>Discovery & Planning</h3>
+                    <p>We start by understanding your business goals, target audience, and project requirements through detailed consultation.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h3>Design & Wireframing</h3>
+                    <p>Creating stunning visual designs and user experience blueprints that align with your brand and objectives.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h3>Development & Testing</h3>
+                    <p>Building your website with clean, optimized code and rigorous testing across all devices and browsers.</p>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h3>Launch & Support</h3>
+                    <p>Deploying your website and providing ongoing support to ensure everything runs smoothly from day one.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <h2>Let's Work Together</h2>
+        <form id="contactForm" onsubmit="sendWhatsApp(event)">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <div id="error-name" class="error">Please enter your name</div>
+
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <div id="error-email" class="error">Please enter a valid email</div>
+
+            <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+            <div id="error-message" class="error">Please enter your message</div>
+
+            <button type="submit" class="btn">Send via WhatsApp</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Websy. Crafting digital experiences with passion.</p>
+    </footer>
+
+    <script>
+        // WhatsApp Form Submission
+        function sendWhatsApp(event) {
+            event.preventDefault();
+
+            // Get form values
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+
+            // Get error elements
+            const errorName = document.getElementById("error-name");
+            const errorEmail = document.getElementById("error-email");
+            const errorMessage = document.getElementById("error-message");
+
+            let isValid = true;
+
+            // Reset all errors
+            errorName.style.display = "none";
+            errorEmail.style.display = "none";
+            errorMessage.style.display = "none";
+
+            // Validate name
+            if (!name) {
+                errorName.style.display = "block";
+                isValid = false;
+            }
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                errorEmail.style.display = "block";
+                isValid = false;
+            }
+
+            // Validate message
+            if (!message) {
+                errorMessage.style.display = "block";
+                isValid = false;
+            }
+
+            // If validation fails, don't proceed
+            if (!isValid) {
+                return;
+            }
+
+            // Your WhatsApp number (corrected format)
+            const phone = "918075227423";
+
+            // Create WhatsApp message
+            const whatsappMessage = `Hello! 👋
+
+*Name:* ${name}
+*Email:* ${email}
+
+*Message:*
+${message}
+
+---
+*Sent from Websy Contact Form*`;
+
+            // Create WhatsApp URL
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMessage)}`;
+
+            // Open WhatsApp
+            window.open(whatsappUrl, "_blank");
+
+            // Optional: Reset form after successful submission
+            document.getElementById("contactForm").reset();
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Service card hover effects
+        document.querySelectorAll('.service-card, .credential-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Mobile menu functionality (for future implementation)
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenu) {
+            mobileMenu.addEventListener('click', function() {
+                // Toggle mobile menu - can be expanded for mobile navigation
+                this.classList.toggle('active');
+            });
+        }
+
+        // Form input animations
+        document.querySelectorAll('.contact input, .contact textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('focused');
+                }
+            });
+        });
+
+        // Add some interactive feedback to buttons
+        document.querySelectorAll('.cta-button, .btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize animations on page load
+        window.addEventListener('load', function() {
+            // Trigger any initial animations
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
